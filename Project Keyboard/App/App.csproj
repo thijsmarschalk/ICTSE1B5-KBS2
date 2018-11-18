@@ -131,6 +131,7 @@
     <Compile Include="Model\Keyboard\Black.cs" />
     <Compile Include="Model\Keyboard\Key.cs" />
     <Compile Include="Model\Keyboard\White.cs" />
+    <Compile Include="MyMidiDeviceWatcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
