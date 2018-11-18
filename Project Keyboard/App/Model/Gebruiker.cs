@@ -1,21 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-/// Summary description for Class1
-/// 
-public class Gebruiker
+namespace App.Model
 {
-    private string gebruikersnaam { get; set; }
-    private string password { get; set; }
-    private string voornaam { get; set; }
-    private string achternaam { get; set; }
-    private int leeftijd { get; set; }
-
-    public Gebruiker (string gebruikersnaam_, string password_, string voornaam_, string achternaam_, int leeftijd)
+    class Gebruiker
     {
-        gebruikersnaam_ = gebruikersnaam;
-        password_ = password;
-        voornaam_ = voornaam;
-        achternaam_ = achternaam;
-        leeftijd_ = leeftijd;
+        public int Id { get; set; }
+        public string gebruikersnaam { get; set; }
+        public string voornaam { get; set; }
+        public string achternaam { get; set; }
     }
 }
