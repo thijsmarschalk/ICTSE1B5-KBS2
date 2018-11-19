@@ -9,7 +9,7 @@ using Windows.UI.Xaml.Controls;
 
 namespace App
 {
-    class MyMidiDeviceWatcher
+    class Midi
     {
 
         public DeviceInformationCollection DeviceInformationCollection { get; set; }
@@ -19,7 +19,7 @@ namespace App
         ListBox deviceListBox;
         CoreDispatcher coreDispatcher;
 
-        public MyMidiDeviceWatcher(string midiDeviceSelectorString, ListBox midiDeviceListBox, CoreDispatcher dispatcher)
+        public Midi(string midiDeviceSelectorString, ListBox midiDeviceListBox, CoreDispatcher dispatcher)
         {
             deviceListBox = midiDeviceListBox;
             coreDispatcher = dispatcher;
@@ -96,7 +96,7 @@ namespace App
             deviceWatcher.Stop();
         }
 
-        ~MyMidiDeviceWatcher()
+        ~Midi()
         {
             deviceWatcher.Added -= DeviceWatcher_Added;
             deviceWatcher.Removed -= DeviceWatcher_Removed;

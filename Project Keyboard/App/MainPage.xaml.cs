@@ -18,6 +18,9 @@ using Windows.Devices.Enumeration;
 using Windows.Devices.Midi;
 using System.Threading.Tasks;
 using Windows.UI.Core;
+using Windows.UI.Popups;
+using App.Model;
+using Windows.ApplicationModel.Core;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -29,8 +32,9 @@ namespace App
     public sealed partial class MainPage : Page
     {
 
-        MyMidiDeviceWatcher inputDeviceWatcher;
+        Midi inputDeviceWatcher;
         MidiInPort midiInPort;
+        MediaElement mediaElement1 = new MediaElement();
 
 
         public MainPage()
@@ -40,7 +44,7 @@ namespace App
 
         private void midiInPortListBox_Loaded(object sender, RoutedEventArgs e)
         {
-            inputDeviceWatcher = new MyMidiDeviceWatcher(MidiInPort.GetDeviceSelector(), midiInPortListBox, Dispatcher);
+            inputDeviceWatcher = new Midi(MidiInPort.GetDeviceSelector(), midiInPortListBox, Dispatcher);
 
             inputDeviceWatcher.StartWatcher();
         }
@@ -95,7 +99,7 @@ namespace App
             this.midiInPortListBox.IsEnabled = true;
         }
 
-        private void MidiInPort_MessageReceived(MidiInPort sender, MidiMessageReceivedEventArgs args)
+        private async void MidiInPort_MessageReceived(MidiInPort sender, MidiMessageReceivedEventArgs args)
         {
             IMidiMessage receivedMidiMessage = args.Message;
 
@@ -103,12 +107,16 @@ namespace App
 
             if (receivedMidiMessage.Type == MidiMessageType.NoteOn)
             {
-                System.Diagnostics.Debug.WriteLine(((MidiNoteOnMessage)receivedMidiMessage).Channel);
-                System.Diagnostics.Debug.WriteLine(((MidiNoteOnMessage)receivedMidiMessage).Note);
-                System.Diagnostics.Debug.WriteLine(((MidiNoteOnMessage)receivedMidiMessage).Velocity);
+                System.Diagnostics.Debug.WriteLine("Channel " + ((MidiNoteOnMessage)receivedMidiMessage).Channel);
+                System.Diagnostics.Debug.WriteLine("Note " + ((MidiNoteOnMessage)receivedMidiMessage).Note);
+                System.Diagnostics.Debug.WriteLine("Velocity " + ((MidiNoteOnMessage)receivedMidiMessage).Velocity);
+
+                
+
+
+                
             }
         }
     }
-
-    
+  
 }
